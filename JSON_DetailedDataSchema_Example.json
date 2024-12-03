@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Detailed Data Schema for Conceptual Model",
+  "type": "object",
+  "properties": {
+    "User": {
+      "type": "object",
+      "description": "Information about the user",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "The username of the user",
+          "maxLength": 100,
+          "pattern": "^[a-zA-Z0-9_]+$"
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address",
+          "format": "email",
+        },
+        "emotional_state": {
+          "type": "string",
+          "description": "The emotional state of the user",
+          "maxLength": 50
+        }
+      },
+      "required": ["username", "email", "emotional_state"]
+    },
+    "HumidityObservation": {
+      "type": "object",
+      "description": "An observation of humidity levels",
+      "properties": {
+        "current_level": {
+          "type": "number",
+          "description": "The current humidity level",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "critical_level": {
+          "type": "number",
+          "description": "The critical humidity level",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "The time the observation was made",
+          "format": "date-time"
+        },
+        "recommendation": {
+          "type": "string",
+          "description": "A recommendation based on the observation",
+          "maxLength": 300
+        }
+      },
+      "required": ["current_level", "critical_level", "timestamp", "recommendation"]
+    },
+    "HumidityHistory": {
+      "type": "object",
+      "description": "Historical records of humidity levels",
+      "properties": {
+        "date": {
+          "type": "string",
+          "description": "The date of the humidity history entry",
+          "format": "date"
+        },
+        "average_humidity": {
+          "type": "number",
+          "description": "The average humidity level for the day",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "max_humidity": {
+          "type": "number",
+          "description": "The maximum humidity level for the day",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "min_humidity": {
+          "type": "number",
+          "description": "The minimum humidity level for the day",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "required": ["date", "average_humidity", "max_humidity", "min_humidity"]
+    },
+    "Recommendation": {
+      "type": "object",
+      "description": "Recommendations provided by the system",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "The content of the recommendation",
+          "maxLength": 300
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of recommendation (physical or emotional)",
+          "maxLength": 50
+        },
+        "creation_date": {
+          "type": "string",
+          "description": "The date when the recommendation was created",
+          "format": "date-time"
+        }
+      },
+      "required": ["content", "type", "creation_date"]
+    },
+    "Exercise": {
+      "type": "object",
+      "description": "An exercise to be performed by the user",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the exercise",
+          "maxLength": 100
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the exercise",
+          "maxLength": 500
+        },
+        "duration": {
+          "type": "integer",
+          "description": "The duration of the exercise in minutes",
+          "minimum": 1
+        }
+      },
+      "required": ["name", "description", "duration"]
+    },
+    "Notification": {
+      "type": "object",
+      "description": "Notification sent to the user",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "The content of the notification message",
+          "maxLength": 300
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "The time the notification was sent",
+          "format": "date-time"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of notification (informational or urgent)",
+          "maxLength": 50
+        }
+      },
+      "required": ["message", "timestamp", "type"]
+    }
+  },
+  "required": ["User", "HumidityObservation", "HumidityHistory", "Recommendation", "Exercise", "Notification"]
+}
