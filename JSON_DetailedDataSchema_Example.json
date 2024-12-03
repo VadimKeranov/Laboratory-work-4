@@ -16,7 +16,7 @@
         "email": {
           "type": "string",
           "description": "The user's email address",
-          "format": "email",
+          "format": "email"
         },
         "emotional_state": {
           "type": "string",
